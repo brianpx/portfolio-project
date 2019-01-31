@@ -12,6 +12,7 @@ __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_layouts_BaseLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/layouts/BaseLayout */ "./components/layouts/BaseLayout.js");
+/* harmony import */ var _components_SuperComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/SuperComponent */ "./components/SuperComponent.js");
 var _jsxFileName = "/Users/meded-macbookpro/Desktop/PORTFOLIO/portfolio-pitts/pages/index.js";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -35,10 +36,11 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var Index =
 /*#__PURE__*/
-function (_React$Component) {
-  _inherits(Index, _React$Component);
+function (_SuperComponent) {
+  _inherits(Index, _SuperComponent);
 
   function Index() {
     var _this;
@@ -70,7 +72,11 @@ function (_React$Component) {
     }
   }, {
     key: "updateTitle",
-    value: function updateTitle() {}
+    value: function updateTitle() {
+      this.setState({
+        title: 'I am updated index Component'
+      });
+    }
   }, {
     key: "render",
     value: function render() {
@@ -80,31 +86,29 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_layouts_BaseLayout__WEBPACK_IMPORTED_MODULE_1__["default"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 33
+          lineNumber: 36
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "fromPage",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 34
+          lineNumber: 37
         },
         __self: this
       }, "I am the index page from class Component"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 35
+          lineNumber: 38
         },
         __self: this
       }, this.state.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          _this2.setState({
-            title: 'I am undpated index Component'
-          });
+          _this2.updateTitle();
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 36
+          lineNumber: 39
         },
         __self: this
       }, "Change Title"));
@@ -112,7 +116,7 @@ function (_React$Component) {
   }]);
 
   return Index;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+}(_components_SuperComponent__WEBPACK_IMPORTED_MODULE_2__["default"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Index);
     (function (Component, route) {
@@ -138,4 +142,4 @@ function (_React$Component) {
 /***/ })
 
 })
-//# sourceMappingURL=index.js.76fb62de70aec3c74f4e.hot-update.js.map
+//# sourceMappingURL=index.js.13ed1156abd4e21d1f2d.hot-update.js.map
