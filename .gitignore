@@ -1,7 +1,5 @@
 .DS_STORE
 node_modules
-*.log*
 chrome-user-data
 .vscode
 porfolio.code-workspace
-notes
