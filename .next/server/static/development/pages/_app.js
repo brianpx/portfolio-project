@@ -112,7 +112,7 @@ module.exports = __webpack_require__(/*! next/app */ "next/app")
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/meded-macbookpro/Desktop/PORTFOLIO/portfolio-pitts/node_modules/next/dist/pages/_app.js */"./node_modules/next/dist/pages/_app.js");
+module.exports = __webpack_require__(/*! /Users/meded-macpro/PORTFOLIO2/portfolio-pitts/node_modules/next/dist/pages/_app.js */"./node_modules/next/dist/pages/_app.js");
 
 
 /***/ }),
