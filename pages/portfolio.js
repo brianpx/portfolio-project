@@ -1,7 +1,7 @@
 import React from 'react';
 import BaseLayout from '../components/layouts/BaseLayout';
 import axios from 'axios';
-import Link from'next/link';
+import { Link } from '../routes'
 
 class Portfolio extends React.Component {
 
@@ -19,10 +19,10 @@ class Portfolio extends React.Component {
    }
 
    renderPosts(posts) {   
-     return posts.map((post) => { 
+     return posts.map((post, index) => { 
        return(
          <>
-         <li><Link href={ `/portfolio_detail?title=${post.title}` }><a style={{'fontSize':'30px'}}>{post.title}</a></Link></li>
+         <li key={index}><Link route = {`/portfolio_detail/${post.id}`}><a style={{'fontSize':'30px'}}>{post.title}</a></Link></li>
          </>
        )
      })
