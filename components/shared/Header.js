@@ -5,13 +5,9 @@ import '../../styles/main.scss';
 class Header extends React.Component {
 
   render () {
-    const title = this.props.title;
+    
     return (
       <>
-      <a>{title}</a>
-      {this.props.children}
-      <p className='customClass'>I am styled p element</p>
-      <p className='customClassFromFile'>I am styled p element</p>
       <Link href="/"><a style={{'fontSize':'30px'}}>Home</a></Link>
       <Link href="/about"><a>About</a></Link>
       <Link href="/portfolio"><a>Portfolio</a></Link>
