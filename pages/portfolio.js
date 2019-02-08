@@ -1,7 +1,9 @@
 import React from 'react';
 import BaseLayout from '../components/layouts/BaseLayout';
+import BasePage from '../components/BasePage';
 import axios from 'axios';
 import { Link } from '../routes'
+
 
 class Portfolio extends React.Component {
 
@@ -21,9 +23,11 @@ class Portfolio extends React.Component {
    renderPosts(posts) {   
      return posts.map((post, index) => { 
        return(
-         <>
-         <li key={index}><Link route = {`/portfolio_detail/${post.id}`}><a style={{'fontSize':'30px'}}>{post.title}</a></Link></li>
-         </>
+         <li key={index}>
+         <Link route = {`/portfolio_detail/${post.id}`}>
+            <a>{post.title}</a>
+          </Link>
+        </li>
        )
      })
    }
@@ -34,10 +38,12 @@ class Portfolio extends React.Component {
     
     return (
       <BaseLayout>
+      <BasePage>
       <h1>I am the portfolio page!!</h1>
       <ul>
        {this.renderPosts(posts)}
       </ul>
+      </BasePage>
       </BaseLayout>
       )
   }

@@ -17,7 +17,7 @@ import {
     const { route, title } = props
     return (
       <Link href={route}>
-        <a className="nav-link">{title}</a>
+        <a className="nav-link port-navbar-link">{title}</a>
       </Link>
     )
   }
@@ -39,16 +39,16 @@ export default class Example extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">mededSocial</NavbarBrand>
+        <Navbar className = "port-navbar port-default absolute" color="transparent"  dark  expand="md">
+          <NavbarBrand className = "port-navbar-brand"  href="/">mededSocial</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem><BsNavLink route="/" title="Home"></BsNavLink></NavItem>
-              <NavItem><BsNavLink route="/about" title="About"></BsNavLink></NavItem>
-              <NavItem><BsNavLink route="/portfolio" title="Portfolio"></BsNavLink></NavItem>
-              <NavItem><BsNavLink route="/blog" title="Blog"></BsNavLink></NavItem>
-              <NavItem><BsNavLink route="/cv" title="CV"></BsNavLink></NavItem>
+              <NavItem className="port-navbar-item"><BsNavLink route="/" title="Home"></BsNavLink></NavItem>
+              <NavItem className="port-navbar-item"><BsNavLink route="/about" title="About"></BsNavLink></NavItem>
+              <NavItem className="port-navbar-item"><BsNavLink route="/portfolio" title="Portfolio"></BsNavLink></NavItem>
+              <NavItem className="port-navbar-item"><BsNavLink route="/blog" title="Blog"></BsNavLink></NavItem>
+              <NavItem className="port-navbar-item"><BsNavLink route="/cv" title="CV"></BsNavLink></NavItem>
 
               
               {/* <UncontrolledDropdown nav inNavbar>

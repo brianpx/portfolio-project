@@ -13,14 +13,6 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/index": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/about": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
     "/portfolio": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
@@ -29,11 +21,11 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/cv": [
+    "/about": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/": [
+    "/cv": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]
