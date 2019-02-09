@@ -16,18 +16,6 @@
     "/portfolio": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
-    ],
-    "/blog": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/about": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/cv": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
     ]
   }
 }

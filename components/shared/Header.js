@@ -22,6 +22,20 @@ import {
     )
   }
 
+const Login = () => {
+  return (
+    <span className="nav-link port-navbar-link clickable">Logout</span>
+
+)
+  }
+
+const Logout = () => {
+  return (
+    <span className="nav-link port-navbar-link clickable">Login</span>
+
+)
+  }
+
 export default class Example extends React.Component {
   constructor(props) {
     super(props);
@@ -68,6 +82,13 @@ export default class Example extends React.Component {
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown> */}
+
+              <NavItem className="port-navbar-item">
+                <Login/>
+              </NavItem>
+              <NavItem className="port-navbar-item">
+                <Logout/>
+              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>
