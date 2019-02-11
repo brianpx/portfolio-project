@@ -44,7 +44,7 @@ class Index extends React.Component {
           <Col md="6" className="hero-welcome-wrapper">
             <div className="hero-welcome-text">
               <h1>
-                Welcome to the portfolio website of Filip Jerga.
+                Welcome to the portfolio website of <b>Brian Pitts</b>.
                 Get informed, collaborate and discover projects I was working on through the years!
               </h1>
             </div>
@@ -66,7 +66,7 @@ class Index extends React.Component {
 
             <div className="hero-welcome-bio">
               <h1>
-                Let's take a look on my work.
+                Let's take a look at my work.
               </h1>
             </div>
           </Col>
