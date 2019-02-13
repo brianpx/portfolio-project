@@ -10,7 +10,7 @@ class Auth0 {
     this.auth0 = new auth0.WebAuth({
       domain: 'dev--5ye-d69.auth0.com',
       //added to protect clientID, moving to private and not published to github
-      //clientID: 'yVIel1qo9aBDN48PXQwYfqKtZXX3WGWo',
+      //clientID: '',
       clientID: priv.clientID,
       redirectUri: 'http://localhost:3000/callback',
       responseType: 'token id_token',
