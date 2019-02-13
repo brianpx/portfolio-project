@@ -28,7 +28,7 @@ class Portfolio_detail extends React.Component {
     //console.log(this.props);
     const { portfolio_detail } = this.props;
     return (
-      <BaseLayout>
+      <BaseLayout {...this.props.auth}>
       <BasePage>
       <h1>{ portfolio_detail.title }</h1>
       <p>BODY: { portfolio_detail.body }</p>

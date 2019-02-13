@@ -5,7 +5,7 @@ import BasePage from '../components/BasePage';
 class Blog extends React.Component {
   render() {
     return (
-      <BaseLayout>
+      <BaseLayout {...this.props.auth}>
       <BasePage>
         <h1>I am the blog page!!</h1>
       </BasePage>

@@ -1,12 +1,17 @@
 import auth0 from 'auth0-js';
 import Cookies from 'js-cookie';
 
+
+//bp
+const priv = require('../private');
 class Auth0 {
 
   constructor () {
     this.auth0 = new auth0.WebAuth({
       domain: 'dev--5ye-d69.auth0.com',
-      clientID: 'yVIel1qo9aBDN48PXQwYfqKtZXX3WGWo',
+      //added to protect clientID, moving to private and not published to github
+      //clientID: 'yVIel1qo9aBDN48PXQwYfqKtZXX3WGWo',
+      clientID: priv.clientID,
       redirectUri: 'http://localhost:3000/callback',
       responseType: 'token id_token',
       scope: 'openid profile'
@@ -36,7 +41,6 @@ class Auth0 {
 
   setSession(authResult) {
     // Set the time that the access token will expire at
-    debugger;
     const expiresAt = (authResult.expiresIn * 1000) + new Date().getTime();
 
     //this.accessToken = authResult.accessToken;

@@ -133,6 +133,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -172,8 +174,11 @@ function (_App) {
     value: function render() {
       var _this$props = this.props,
           Component = _this$props.Component,
-          pageProps = _this$props.pageProps;
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(next_app__WEBPACK_IMPORTED_MODULE_2__["Container"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Component, pageProps));
+          pageProps = _this$props.pageProps,
+          auth = _this$props.auth;
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(next_app__WEBPACK_IMPORTED_MODULE_2__["Container"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Component, _extends({}, pageProps, {
+        auth: auth
+      })));
     }
   }], [{
     key: "getInitialProps",
@@ -181,7 +186,7 @@ function (_App) {
       var _getInitialProps = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref) {
-        var Component, router, ctx, pageProps, isAuthenticated;
+        var Component, router, ctx, pageProps, isAuthenticated, auth;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -189,22 +194,25 @@ function (_App) {
                 Component = _ref.Component, router = _ref.router, ctx = _ref.ctx;
                 pageProps = {};
                 isAuthenticated =  false ? undefined : _services_auth0__WEBPACK_IMPORTED_MODULE_3__["default"].serverAuth(ctx.req);
-                console.log(isAuthenticated);
 
                 if (!Component.getInitialProps) {
-                  _context.next = 8;
+                  _context.next = 7;
                   break;
                 }
 
-                _context.next = 7;
+                _context.next = 6;
                 return Component.getInitialProps(ctx);
 
-              case 7:
+              case 6:
                 pageProps = _context.sent;
 
-              case 8:
+              case 7:
+                auth = {
+                  isAuthenticated: isAuthenticated
+                };
                 return _context.abrupt("return", {
-                  pageProps: pageProps
+                  pageProps: pageProps,
+                  auth: auth
                 });
 
               case 9:
@@ -230,6 +238,21 @@ function (_App) {
 
 /***/ }),
 
+/***/ "./private.js":
+/*!********************!*\
+  !*** ./private.js ***!
+  \********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+if (false) {} else {
+  module.exports = {
+    clientID: 'yVIel1qo9aBDN48PXQwYfqKtZXX3WGWo'
+  };
+}
+
+/***/ }),
+
 /***/ "./services/auth0.js":
 /*!***************************!*\
   !*** ./services/auth0.js ***!
@@ -250,7 +273,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 
+ //bp
 
+var priv = __webpack_require__(/*! ../private */ "./private.js");
 
 var Auth0 =
 /*#__PURE__*/
@@ -260,7 +285,9 @@ function () {
 
     this.auth0 = new auth0_js__WEBPACK_IMPORTED_MODULE_0___default.a.WebAuth({
       domain: 'dev--5ye-d69.auth0.com',
-      clientID: 'yVIel1qo9aBDN48PXQwYfqKtZXX3WGWo',
+      //added to protect clientID, moving to private and not published to github
+      //clientID: 'yVIel1qo9aBDN48PXQwYfqKtZXX3WGWo',
+      clientID: priv.clientID,
       redirectUri: 'http://localhost:3000/callback',
       responseType: 'token id_token',
       scope: 'openid profile'
@@ -293,7 +320,6 @@ function () {
     key: "setSession",
     value: function setSession(authResult) {
       // Set the time that the access token will expire at
-      debugger;
       var expiresAt = authResult.expiresIn * 1000 + new Date().getTime(); //this.accessToken = authResult.accessToken;
 
       js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.set('user', authResult.idTokenPayload);
