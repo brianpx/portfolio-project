@@ -120,10 +120,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var next_app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/app */ "next/app");
 /* harmony import */ var next_app__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_app__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ "./node_modules/bootstrap/dist/css/bootstrap.min.css");
-/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _styles_main_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../styles/main.scss */ "./styles/main.scss");
-/* harmony import */ var _styles_main_scss__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_styles_main_scss__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _services_auth0__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/auth0 */ "./services/auth0.js");
+/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ "./node_modules/bootstrap/dist/css/bootstrap.min.css");
+/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _styles_main_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../styles/main.scss */ "./styles/main.scss");
+/* harmony import */ var _styles_main_scss__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_styles_main_scss__WEBPACK_IMPORTED_MODULE_5__);
 
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -147,6 +148,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
  //styles - note, main.scss overrides bootstrap
@@ -179,31 +181,33 @@ function (_App) {
       var _getInitialProps = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref) {
-        var Component, ctx, pageProps;
+        var Component, router, ctx, pageProps, isAuthenticated;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                Component = _ref.Component, ctx = _ref.ctx;
+                Component = _ref.Component, router = _ref.router, ctx = _ref.ctx;
                 pageProps = {};
+                isAuthenticated =  false ? undefined : _services_auth0__WEBPACK_IMPORTED_MODULE_3__["default"].serverAuth(ctx.req);
+                console.log(isAuthenticated);
 
                 if (!Component.getInitialProps) {
-                  _context.next = 6;
+                  _context.next = 8;
                   break;
                 }
 
-                _context.next = 5;
+                _context.next = 7;
                 return Component.getInitialProps(ctx);
 
-              case 5:
+              case 7:
                 pageProps = _context.sent;
 
-              case 6:
+              case 8:
                 return _context.abrupt("return", {
                   pageProps: pageProps
                 });
 
-              case 7:
+              case 9:
               case "end":
                 return _context.stop();
             }
@@ -223,6 +227,131 @@ function (_App) {
 }(next_app__WEBPACK_IMPORTED_MODULE_2___default.a);
 
 
+
+/***/ }),
+
+/***/ "./services/auth0.js":
+/*!***************************!*\
+  !*** ./services/auth0.js ***!
+  \***************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var auth0_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! auth0-js */ "auth0-js");
+/* harmony import */ var auth0_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(auth0_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! js-cookie */ "js-cookie");
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_1__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+var Auth0 =
+/*#__PURE__*/
+function () {
+  function Auth0() {
+    _classCallCheck(this, Auth0);
+
+    this.auth0 = new auth0_js__WEBPACK_IMPORTED_MODULE_0___default.a.WebAuth({
+      domain: 'dev--5ye-d69.auth0.com',
+      clientID: 'yVIel1qo9aBDN48PXQwYfqKtZXX3WGWo',
+      redirectUri: 'http://localhost:3000/callback',
+      responseType: 'token id_token',
+      scope: 'openid profile'
+    });
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
+    this.handleAuthentication = this.handleAuthentication.bind(this);
+    this.isAuthenticated = this.isAuthenticated.bind(this);
+  }
+
+  _createClass(Auth0, [{
+    key: "handleAuthentication",
+    value: function handleAuthentication() {
+      var _this = this;
+
+      return new Promise(function (resolve, reject) {
+        _this.auth0.parseHash(function (err, authResult) {
+          if (authResult && authResult.accessToken && authResult.idToken) {
+            _this.setSession(authResult);
+
+            resolve();
+          } else if (err) {
+            reject(err);
+            console.log(err);
+          }
+        });
+      });
+    }
+  }, {
+    key: "setSession",
+    value: function setSession(authResult) {
+      // Set the time that the access token will expire at
+      debugger;
+      var expiresAt = authResult.expiresIn * 1000 + new Date().getTime(); //this.accessToken = authResult.accessToken;
+
+      js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.set('user', authResult.idTokenPayload);
+      js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.set('jwt', authResult.idToken);
+      js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.set('expiresAt', expiresAt);
+    }
+  }, {
+    key: "logout",
+    value: function logout() {
+      js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.remove('user');
+      js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.remove('jwt');
+      js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.remove('expiresAt');
+      this.auth0.logout({
+        returnTo: '',
+        clientID: 'yVIel1qo9aBDN48PXQwYfqKtZXX3WGWo'
+      });
+    }
+  }, {
+    key: "login",
+    value: function login() {
+      this.auth0.authorize();
+    }
+  }, {
+    key: "isAuthenticated",
+    value: function isAuthenticated() {
+      var expiresAt = js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.getJSON('expiresAt'); //console.log(new Date().getTime() < expiresAt);
+
+      return new Date().getTime() < expiresAt;
+    }
+  }, {
+    key: "clientAuth",
+    value: function clientAuth() {
+      return this.isAuthenticated();
+    }
+  }, {
+    key: "serverAuth",
+    value: function serverAuth(req) {
+      if (req.headers.cookie) {
+        var expirestAtCookie = req.headers.cookie.split(';').find(function (c) {
+          return c.trim().startsWith('expiresAt=');
+        });
+
+        if (!expirestAtCookie) {
+          return undefined;
+        }
+
+        ;
+        var expiresAt = expirestAtCookie.split('=')[1];
+        return new Date().getTime() < expiresAt;
+      }
+    }
+  }]);
+
+  return Auth0;
+}();
+
+var auth0Client = new Auth0();
+/* harmony default export */ __webpack_exports__["default"] = (auth0Client);
 
 /***/ }),
 
@@ -257,6 +386,28 @@ module.exports = __webpack_require__(/*! ./pages/_app.js */"./pages/_app.js");
 /***/ (function(module, exports) {
 
 module.exports = require("@babel/runtime/regenerator");
+
+/***/ }),
+
+/***/ "auth0-js":
+/*!***************************!*\
+  !*** external "auth0-js" ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("auth0-js");
+
+/***/ }),
+
+/***/ "js-cookie":
+/*!****************************!*\
+  !*** external "js-cookie" ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("js-cookie");
 
 /***/ }),
 

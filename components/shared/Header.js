@@ -33,7 +33,7 @@ const Login = () => {
 
 const Logout = () => {
   return (
-    <span className="nav-link port-navbar-link clickable">Logout</span>
+    <span onClick ={auth0.logout} className="nav-link port-navbar-link clickable">Logout</span>
 
 )
   }
@@ -65,32 +65,19 @@ export default class Example extends React.Component {
               <NavItem className="port-navbar-item"><BsNavLink route="/portfolio" title="Portfolio"></BsNavLink></NavItem>
               <NavItem className="port-navbar-item"><BsNavLink route="/blog" title="Blog"></BsNavLink></NavItem>
               <NavItem className="port-navbar-item"><BsNavLink route="/cv" title="CV"></BsNavLink></NavItem>
-
               
-              {/* <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Options
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>
-                    Option 1
-                  </DropdownItem>
-                  <DropdownItem>
-                    Option 2
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    Reset
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown> */}
+              { !auth0.isAuthenticated() && 
+                <NavItem className="port-navbar-item">
+                  <Login/>
+                </NavItem>
+              }
 
-              <NavItem className="port-navbar-item">
-                <Login/>
-              </NavItem>
-              <NavItem className="port-navbar-item">
-                <Logout/>
-              </NavItem>
+                { auth0.isAuthenticated() &&
+                <NavItem className="port-navbar-item">
+                  <Logout/>
+                </NavItem>
+                }
+
             </Nav>
           </Collapse>
         </Navbar>
